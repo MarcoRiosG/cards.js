@@ -24,7 +24,7 @@ const createCard = (number, symbol) => {
 
     // ${(['J', 'Q', 'K'].includes(number)) ? 
     cardDiv.innerHTML = `${createCardCorner(number, symbol)}
-    <div class="symbols" number="">
+    <div class="symbols">
         
         ${(number === "A") ? `<div>${symbol}</div>`:''}
 
@@ -43,6 +43,8 @@ const createCard = (number, symbol) => {
             cardDiv.classList.remove('flipped');
         } else {
             cardDiv.classList.add('flipped');
+            var elem = document.getElementsByClassName('symbols');
+            elem.parentNode
         }
         
     })
