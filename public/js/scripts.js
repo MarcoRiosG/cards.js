@@ -81,6 +81,7 @@ window.addEventListener('load', function() {
             const symbol = card.slice(-1);
     
             container.append(createCard(number, symbol));
+            
         });    
     })();
 })
