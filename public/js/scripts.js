@@ -13,10 +13,6 @@ const createCardCorner = (number, symbol) => {
     </div>`;
 }
 
-const createCardBack = () => {
-    return `<div class="back"></div>`;
-}
-
 
 const createCard = (number, symbol) => {
     const isNumber = !isNaN(number);
@@ -29,22 +25,16 @@ const createCard = (number, symbol) => {
     // ${(['J', 'Q', 'K'].includes(number)) ? 
     cardDiv.innerHTML = `${createCardCorner(number, symbol)}
     <div class="symbols" number="">
-        <div class="front">
+        
         ${(number === "A") ? `<div>${symbol}</div>`:''}
 
-        
-        ${(number === "J" || number === "Q" || number === "K") ? 
-            `<div class="image"></div>`:""}
+        ${(number === "J" || number === "Q" || number === "K") ? `<div class="image"></div>`:""}
 
         ${(isNumber) ? `${new Array(parseInt(number))
         .fill(symbol)
-        .map((cardSymbol) => `
-            <div class="${number}">${cardSymbol}</div>
-        `)
+        .map((cardSymbol) => `<div class="${number}">${cardSymbol}</div>`)
         .join('')
         }` : ''}
-        </div>
-        ${createCardBack()}
     </div>
     ${createCardCorner(number, symbol)}`;
 
@@ -74,14 +64,14 @@ window.addEventListener('load', function() {
         // }
     
         //const {cards} = await(await fetch('/deck')).json();
-        const deck = await(await fetch(`/deck/${handSize}`)).json();    
+        const deck = await(await fetch(`/deck/${handSize}`)).json();
+    
         
         deck.forEach((card) => {
             const number = card.slice(0, -1);
             const symbol = card.slice(-1);
     
             container.append(createCard(number, symbol));
-            
         });    
     })();
 })
