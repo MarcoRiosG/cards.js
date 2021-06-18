@@ -27,14 +27,15 @@ const createCard = (number, symbol) => {
     cardDiv.setAttribute('number', number);
 
     // ${(['J', 'Q', 'K'].includes(number)) ? 
-    cardDiv.innerHTML = `${createCardCorner(number, symbol)}
-    <div class="symbols" number="">
+    cardDiv.innerHTML = `
+    <div class="area">
         <div class="front">
+        ${createCardCorner(number, symbol)}
         ${(number === "A") ? `<div>${symbol}</div>`:''}
 
         
         ${(number === "J" || number === "Q" || number === "K") ? 
-            `<div class="image"></div>`:""}
+            `<div class="image"></div>`:''}
 
         ${(isNumber) ? `${new Array(parseInt(number))
         .fill(symbol)
@@ -43,10 +44,10 @@ const createCard = (number, symbol) => {
         `)
         .join('')
         }` : ''}
+        ${createCardCorner(number, symbol)}
         </div>
         ${createCardBack()}
-    </div>
-    ${createCardCorner(number, symbol)}`;
+    </div>`;
 
     cardDiv.addEventListener('click', () => {
         if(cardDiv.classList.contains('flipped')){
