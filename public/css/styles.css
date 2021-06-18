@@ -1,6 +1,6 @@
-body {
-    background-color: #eee;
-    justify-content: center;
+  body {
+    background-color: green;
+    text-align: center;
   }
 
   .card {
@@ -30,7 +30,6 @@ body {
     top: 0px;
     left: 0px;
     backface-visibility: hidden;
-
   }
 
   .symbols + .card-corner {

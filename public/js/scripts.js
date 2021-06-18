@@ -14,7 +14,7 @@ const createCardCorner = (number, symbol) => {
 }
 
 
-const createCard = (number, symbol) => {
+const createCard = (number, symbol, flip) => {
     const isNumber = !isNaN(number);
     const cardDiv = document.createElement('div');
 
@@ -49,12 +49,24 @@ const createCard = (number, symbol) => {
         
     })
 
+    if(flip){
+      cardDiv.classList.add('flipped');
+    }
+
     return cardDiv;
+
 }
 
+// const createDeck = async (selector, path) => {
+//   const container = document.querySelector(selector);
+//   const cards = await(await fetch(path)).json();
+//   cards.forEach((card) => container.append(createCard(card)));
+// };
+
 window.addEventListener('load', function() {
-    const container = document.querySelector('.deck');
-    const handSize = 5;
+    const containerTable = document.querySelector('.deck.table')
+
+    const container = document.querySelector('.deck.hand');
 
     (async () => {
         // const response = await fetch('/deck');
@@ -66,15 +78,31 @@ window.addEventListener('load', function() {
         // }
     
         //const {cards} = await(await fetch('/deck')).json();
-        const deck = await(await fetch(`/deck/${handSize}`)).json();
-    
+
+        // await createDeck('.deck.table', '/table');
+        // const handSize = 5;
+        // await createDeck('.deck.hand', `/deck/${handSize}`)
+        const table = await(await fetch(`/table`)).json();
         
-        deck.forEach((card) => {
+        table.forEach((card, index) => {
             const number = card.slice(0, -1);
             const symbol = card.slice(-1);
+            const flip = 2;
     
-            container.append(createCard(number, symbol));
+            containerTable.append(createCard(number, symbol, (index < flip)));
+        }); 
+        
+        const handSize = 2;
+        const deck = await(await fetch(`/deck/${handSize}`)).json();
+        
+        deck.forEach((card, index) => {
+            const number = card.slice(0, -1);
+            const symbol = card.slice(-1);
+            const flip = handSize;
+    
+            container.append(createCard(number, symbol, (index < flip)));
         });    
+
     })();
 })
 
