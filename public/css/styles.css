@@ -1,10 +1,10 @@
-body {
-    background-color: #eee;
-    justify-content: center;
+  body {
+    background-color: green;
+    text-align: center;
   }
 
   .card {
-    background-color: #dfdfdf;
+    background-color: #ffffff;
     border: 1px white solid;
     border-radius: 10px;
     margin: 5px;
@@ -14,7 +14,7 @@ body {
     position: relative;
     color: black;
     transform-style: preserve-3d;
-    transition: transform .25s ease-in;
+    transition: transform 0s ease-in;
   }
   
   .card[symbol="♦"],
@@ -29,6 +29,7 @@ body {
     position: absolute;
     top: 0px;
     left: 0px;
+    backface-visibility: hidden;
   }
 
   .symbols + .card-corner {
@@ -47,6 +48,7 @@ body {
   .symbols div {
     position: absolute;
     font-size: 30px;
+    backface-visibility: hidden;
   }
 
   .card[number="2"] .symbols div {
@@ -257,6 +259,5 @@ body {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     transform-style: preserve-3d;
-    transition: transform .25s ease-in;
-    rotate: ();
+    transition: transform 0s ease-in;
   }
